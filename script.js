@@ -8,9 +8,9 @@ let servicePrice1 = prompt('Сколько это будет стоить?', '50
 let service2 = prompt('Какой дополнительный тип услуги нужен?')
 let servicePrice2 = prompt('Сколько это будет стоить?', '5000')
 
-let fullPrice = screenPrice + parseInt(servicePrice1) + parseInt(servicePrice2)
+let fullPrice
 let rollback = 5
-let servicePercentPrice = Math.ceil(fullPrice - (fullPrice * (rollback / 100)))
+let servicePercentPrice
 let allServicePrices
 
 
@@ -51,7 +51,7 @@ function getTitle() {
 }
 
 function getServicePercentPrices() {
-	return fullPrice - servicePercentPrice
+	return fullPrice - (fullPrice * (rollback / 100))
 }
 
 
