@@ -1,52 +1,64 @@
-let title = 'glo academy';
-let screens = "Простые, Сложные, Интерактивные";
-let screenPrice = 10000;
-let rollback = 5;
-let fullPrice = 95000;
-let adaptive = true;
-
-console.log('typeof title: ' + typeof title);
-console.log('typeof fullPrice: ' + typeof fullPrice);
-console.log('typeof adaptive: ' + typeof adaptive);
-
-console.log('length of screens: ' + screens.length)
-
-console.log('Стоимость верстки экранов ' + screenPrice + ' рублей')
-console.log('Стоимость разработки сайта ' + fullPrice + ' рублей')
-
-
-console.log(screens.toLocaleLowerCase().split(', '))
-console.log(fullPrice * (rollback / 100))
-
-title = prompt('Как называется ваш проект?')
-screens = prompt('Какие типы экранов нужно разработать?')
-screenPrice = +prompt('Сколько будет стоить данная работа?', '10000')
-adaptive = confirm('Нужен ли адаптив на сайте?')
+let title = prompt('Как называется ваш проект?')
+let screens = prompt('Какие типы экранов нужно разработать?')
+let screenPrice = +prompt('Сколько будет стоить данная работа?', '10000')
+let adaptive = confirm('Нужен ли адаптив на сайте?')
 
 let service1 = prompt('Какой дополнительный тип услуги нужен?')
 let servicePrice1 = prompt('Сколько это будет стоить?', '5000')
 let service2 = prompt('Какой дополнительный тип услуги нужен?')
 let servicePrice2 = prompt('Сколько это будет стоить?', '5000')
 
-fullPrice = screenPrice + parseInt(servicePrice1) + parseInt(servicePrice2);
-
+let fullPrice = screenPrice + parseInt(servicePrice1) + parseInt(servicePrice2)
+let rollback = 5
 let servicePercentPrice = Math.ceil(fullPrice - (fullPrice * (rollback / 100)))
-console.log(servicePercentPrice)
+let allServicePrices
 
-switch (true) {
-	case fullPrice >= 3000:
-		console.log('Даем скидку в 10%')
-		break
 
-	case fullPrice >= 15000 && fullPrice <= 30000:
-		console.log('Даем скидку в 5%')
-		break
-
-	case fullPrice <= 15000 && fullPrice >= 0:
-		console.log('Скидка не предусмотрена')
-		break
-
-	case fullPrice < 0:
-		console.log('Что то пошло не так')
-		break
+let showTypeOf = function (variable) {
+	console.log(variable, typeof variable)
 }
+
+let getRollbackMessage = function (price) {
+	switch (true) {
+		case price >= 3000:
+			return 'Даем скидку в 10%'
+			break
+
+		case price >= 15000 && price <= 30000:
+			return 'Даем скидку в 5%'
+			break
+
+		case price <= 15000 && price >= 0:
+			return 'Скидка не предусмотрена'
+			break
+
+		case price < 0:
+			return 'Что то пошло не так'
+			break
+	}
+}
+
+let getAllServicePrices = function () {
+	return allServicePrices = servicePrice1 + servicePrice2
+}
+
+function getFullPrice() {
+	return fullPrice = screenPrice + allServicePrices
+}
+
+function getTitle() {
+	return title.trim().slice(0, 1).toLocaleUpperCase() + title.trim().slice(1).toLocaleLowerCase()
+}
+
+function getServicePercentPrices() {
+	return servicePercentPrice = fullPrice - servicePercentPrice
+}
+
+
+showTypeOf(title)
+showTypeOf(fullPrice)
+showTypeOf(adaptive)
+
+console.log(screens.toLocaleLowerCase().split(', '))
+console.log(getRollbackMessage(fullPrice))
+console.log(getServicePercentPrices())
