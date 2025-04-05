@@ -39,11 +39,11 @@ let getRollbackMessage = function (price) {
 }
 
 let getAllServicePrices = function () {
-	return allServicePrices = servicePrice1 + servicePrice2
+	return servicePrice1 + servicePrice2
 }
 
 function getFullPrice() {
-	return fullPrice = screenPrice + allServicePrices
+	return screenPrice + allServicePrices
 }
 
 function getTitle() {
@@ -51,7 +51,7 @@ function getTitle() {
 }
 
 function getServicePercentPrices() {
-	return servicePercentPrice = fullPrice - servicePercentPrice
+	return fullPrice - servicePercentPrice
 }
 
 
@@ -59,6 +59,11 @@ showTypeOf(title)
 showTypeOf(fullPrice)
 showTypeOf(adaptive)
 
+allServicePrices = getAllServicePrices()
+fullPrice = getFullPrice()
+servicePercentPrice = getServicePercentPrices()
+title = getTitle()
+
 console.log(screens.toLocaleLowerCase().split(', '))
 console.log(getRollbackMessage(fullPrice))
-console.log(getServicePercentPrices())
+console.log(servicePercentPrice)
