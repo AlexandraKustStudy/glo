@@ -1,17 +1,30 @@
-let title = prompt('Как называется ваш проект?')
-let screens = prompt('Какие типы экранов нужно разработать?')
-let screenPrice = +prompt('Сколько будет стоить данная работа?', '10000')
-let adaptive = confirm('Нужен ли адаптив на сайте?')
+let title
+let screens
+let screenPrice
+let adaptive
 
-let service1 = prompt('Какой дополнительный тип услуги нужен?')
-let servicePrice1 = prompt('Сколько это будет стоить?', '5000')
-let service2 = prompt('Какой дополнительный тип услуги нужен?')
-let servicePrice2 = prompt('Сколько это будет стоить?', '5000')
-
+let service1
+let service2
 let fullPrice
 let rollback = 5
 let servicePercentPrice
 let allServicePrices
+
+const isNumber = function (num) {
+	return !isNaN(parseFloat(num)) && isFinite(num)
+}
+
+const asking = function () {
+	title = prompt('Как называется ваш проект?', 'Проект !')
+	screens = prompt('Какие типы экранов нужно разработать?', 'Сложные, простые')
+
+	do {
+		screenPrice = prompt('Сколько будет стоить данная работа?')
+	} while (!isNumber(screenPrice)) {
+
+	}
+	adaptive = confirm('Нужен ли адаптив на сайте?')
+}
 
 
 let showTypeOf = function (variable) {
@@ -39,7 +52,22 @@ let getRollbackMessage = function (price) {
 }
 
 let getAllServicePrices = function () {
-	return servicePrice1 + servicePrice2
+	let sum = 0;
+
+	for (let i = 0; i < 2; i++) {
+		if (i === 0) {
+			service1 = prompt('Какой дополнительный тип услуги нужен?')
+		} else if (i === 1) {
+			service2 = prompt('Какой дополнительный тип услуги нужен?')
+		}
+
+		let answer = prompt('Сколько это будет стоить?')
+
+		if (!isNumber(answer))
+			sum += +answer
+	}
+
+	return sum
 }
 
 function getFullPrice() {
@@ -54,15 +82,16 @@ function getServicePercentPrices() {
 	return fullPrice - (fullPrice * (rollback / 100))
 }
 
-
-showTypeOf(title)
-showTypeOf(fullPrice)
-showTypeOf(adaptive)
+asking()
 
 allServicePrices = getAllServicePrices()
 fullPrice = getFullPrice()
 servicePercentPrice = getServicePercentPrices()
 title = getTitle()
+
+showTypeOf(title)
+showTypeOf(fullPrice)
+showTypeOf(adaptive)
 
 console.log(screens.toLocaleLowerCase().split(', '))
 console.log(getRollbackMessage(fullPrice))
